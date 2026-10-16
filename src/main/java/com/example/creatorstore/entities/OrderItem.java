@@ -1,5 +1,6 @@
 package com.example.creatorstore.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,6 +26,7 @@ public class OrderItem {
     private BigDecimal priceAtPurchase;
 
 
+    @JsonBackReference // Empêche Jackson de réafficher la commande ici pour éviter de boucler à l'infini
     // Une commande peut contenir lignes d'articles, donc on a une relation ManyToOne entre OrderItem et Order
     // JoinColumn indique à Hibernate que la colonne "order_id" dans la table OrderItem est une clé étrangère qui fait référence à la table Order
     @ManyToOne
